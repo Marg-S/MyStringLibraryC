@@ -199,7 +199,7 @@ START_TEST(test_sscanf_integer_ld_6) {
       sscanf(str, "%li %ld %ld %li", &system_values[0], &system_values[1],
              &system_values[2], &system_values[3]);
   int my_result = my_sscanf(str, fstr, &my_values[0], &my_values[1],
-                              &my_values[2], &my_values[3]);
+                            &my_values[2], &my_values[3]);
 
   ck_assert_int_eq(system_result, my_result);
   ck_assert_int_eq(system_values[0], my_values[0]);
@@ -307,7 +307,7 @@ START_TEST(test_sscanf_unsigned_2) {
       sscanf(str, "%1lu %2lu %5lu %4lu", &system_values[0], &system_values[1],
              &system_values[2], &system_values[3]);
   int my_result = my_sscanf(str, fstr, &my_values[0], &my_values[1],
-                              &my_values[2], &my_values[3]);
+                            &my_values[2], &my_values[3]);
 
   ck_assert_int_eq(system_result, my_result);
   ck_assert_int_eq(system_values[0], my_values[0]);
@@ -735,8 +735,8 @@ START_TEST(test_sscanf_float_G_1) {
   int system_result =
       sscanf(str, "%G %G %G %*G %G", &system_value[0], &system_value[1],
              &system_value[2], &system_value[3]);
-  int my_result = my_sscanf(str, fstr, &my_value[0], &my_value[1],
-                              &my_value[2], &my_value[3]);
+  int my_result = my_sscanf(str, fstr, &my_value[0], &my_value[1], &my_value[2],
+                            &my_value[3]);
 
   ck_assert_int_eq(system_result, my_result);
   ck_assert_float_eq(system_value[0], my_value[0]);
@@ -757,8 +757,8 @@ START_TEST(test_sscanf_float_G_2) {
   int system_result =
       sscanf(str, "%G %G %G %G %G", &system_value[0], &system_value[1],
              &system_value[2], &system_value[3], &system_value[4]);
-  int my_result = my_sscanf(str, fstr, &my_value[0], &my_value[1],
-                              &my_value[2], &my_value[3], &my_value[4]);
+  int my_result = my_sscanf(str, fstr, &my_value[0], &my_value[1], &my_value[2],
+                            &my_value[3], &my_value[4]);
 
   ck_assert_int_eq(system_result, my_result);
   ck_assert_float_nan(system_value[0]);
@@ -778,8 +778,8 @@ START_TEST(test_sscanf_double_e) {
   int system_result =
       sscanf(str, "%Le %Le %Le %Le", &system_value[0], &system_value[1],
              &system_value[2], &system_value[3]);
-  int my_result = my_sscanf(str, "%Le %Le %Le %Le", &my_value[0],
-                              &my_value[1], &my_value[2], &my_value[3]);
+  int my_result = my_sscanf(str, "%Le %Le %Le %Le", &my_value[0], &my_value[1],
+                            &my_value[2], &my_value[3]);
 
   ck_assert_int_eq(system_result, my_result);
   ck_assert_double_eq(system_value[0], my_value[0]);
@@ -878,7 +878,7 @@ START_TEST(test_sscanf_chars_2) {
   const char *fstr = "%c %c %c      %c";
 
   int my_result = my_sscanf(str, fstr, &my_values[0], &my_values[1],
-                              &my_values[2], &my_values[3]);
+                            &my_values[2], &my_values[3]);
   int system_result =
       sscanf(str, "%c %c %c      %c", &system_values[0], &system_values[1],
              &system_values[2], &system_values[3]);
@@ -898,7 +898,7 @@ START_TEST(test_sscanf_chars_4) {
   const char *fstr = "%c %c %c %c";
 
   int my_result = my_sscanf(str, fstr, &my_values[0], &my_values[1],
-                              &my_values[2], &my_values[3]);
+                            &my_values[2], &my_values[3]);
   int system_result =
       sscanf(str, "%c %c %c %c", &system_values[0], &system_values[1],
              &system_values[2], &system_values[3]);
@@ -918,7 +918,7 @@ START_TEST(test_sscanf_chars_5) {
   const char *fstr = "%c%c%c%c";
 
   int my_result = my_sscanf(str, fstr, &my_values[0], &my_values[1],
-                              &my_values[2], &my_values[3]);
+                            &my_values[2], &my_values[3]);
   int system_result =
       sscanf(str, "%c%c%c%c", &system_values[0], &system_values[1],
              &system_values[2], &system_values[3]);
@@ -938,7 +938,7 @@ START_TEST(test_sscanf_chars_6) {
   const char *fstr = "%c %c %c %c";
 
   int my_result = my_sscanf(str, fstr, &my_values[0], &my_values[1],
-                              &my_values[2], &my_values[3]);
+                            &my_values[2], &my_values[3]);
   int system_result =
       sscanf(str, "%c %c %c %c", &system_values[0], &system_values[1],
              &system_values[2], &system_values[3]);
@@ -958,7 +958,7 @@ START_TEST(test_sscanf_chars_7) {
   const char *fstr = "%1c %c %c %0c";
 
   int my_result = my_sscanf(str, fstr, &my_values[0], &my_values[1],
-                              &my_values[2], &my_values[3]);
+                            &my_values[2], &my_values[3]);
   int system_result =
       sscanf(str, "%1c %c %c %2c", &system_values[0], &system_values[1],
              &system_values[2], &system_values[3]);
@@ -1023,8 +1023,8 @@ START_TEST(test_sscanf_string_1) {
   const char *str = "Aaaaa bbbb cccccc ddddd";
   const char *fstr = "%s %s %s %s";
 
-  int my_result = my_sscanf(str, fstr, my_string_1, my_string_2,
-                              my_string_3, my_string_4);
+  int my_result =
+      my_sscanf(str, fstr, my_string_1, my_string_2, my_string_3, my_string_4);
   int system_result = sscanf(str, "%s %s %s %s", system_string_1,
                              system_string_2, system_string_3, system_string_4);
 
@@ -1056,9 +1056,8 @@ START_TEST(test_sscanf_string_2) {
   const char *str = "Aaaaa 111 bbbb -222 cccccc 44ddddd 5";
   const char *fstr = "%s%ld%s%d%s%d%s";
 
-  int my_result =
-      my_sscanf(str, fstr, my_string_1, &my_value_1, my_string_2,
-                 &my_value_2, my_string_3, &my_value_3, my_string_4);
+  int my_result = my_sscanf(str, fstr, my_string_1, &my_value_1, my_string_2,
+                            &my_value_2, my_string_3, &my_value_3, my_string_4);
   int system_result = sscanf(str, "%s%ld%s%d%s%d%s", system_string_1,
                              &system_value_1, system_string_2, &system_value_2,
                              system_string_3, &system_value_3, system_string_4);
@@ -1088,8 +1087,8 @@ START_TEST(test_sscanf_string_3) {
   const char *str = "Aaaaa\tbbbb\tcccccc\tddddd e";
   const char *fstr = "%s%*s%s%s%ls";
 
-  int my_result = my_sscanf(str, fstr, my_string_1, my_string_2,
-                              my_string_3, my_string_4);
+  int my_result =
+      my_sscanf(str, fstr, my_string_1, my_string_2, my_string_3, my_string_4);
   int system_result = sscanf(str, "%s%*s%s%s%ls", system_string_1,
                              system_string_2, system_string_3, system_string_4);
 
@@ -1142,8 +1141,8 @@ START_TEST(test_sscanf_string_5) {
   const char *str = "Aaaaa\tbbbb\tcccccc\tddddd";
   const char *fstr = "%1s%1s%1s%1s";
 
-  int my_result = my_sscanf(str, fstr, my_string_1, my_string_2,
-                              my_string_3, my_string_4);
+  int my_result =
+      my_sscanf(str, fstr, my_string_1, my_string_2, my_string_3, my_string_4);
   int system_result = sscanf(str, "%1s%1s%1s%1s", system_string_1,
                              system_string_2, system_string_3, system_string_4);
 
@@ -1169,8 +1168,8 @@ START_TEST(test_sscanf_string_6) {
   const char *str = "Aaaaa\tbbbb\tcccccc\tddddd";
   const char *fstr = "%3s%3s%3s%3s";
 
-  int my_result = my_sscanf(str, fstr, my_string_1, my_string_2,
-                              my_string_3, my_string_4);
+  int my_result =
+      my_sscanf(str, fstr, my_string_1, my_string_2, my_string_3, my_string_4);
   int system_result = sscanf(str, "%3s%3s%3s%3s", system_string_1,
                              system_string_2, system_string_3, system_string_4);
 
@@ -1196,8 +1195,8 @@ START_TEST(test_sscanf_string_7) {
   const char *str = "Aaaaa\tbbbb\tcccccc\tddddd";
   const char *fstr = "%150s%1s%1s\t%3s";
 
-  int my_result = my_sscanf(str, fstr, my_string_1, my_string_2,
-                              my_string_3, my_string_4);
+  int my_result =
+      my_sscanf(str, fstr, my_string_1, my_string_2, my_string_3, my_string_4);
   int system_result = sscanf(str, "%150s%1s%1s\t%3s", system_string_1,
                              system_string_2, system_string_3, system_string_4);
 
@@ -1232,8 +1231,8 @@ START_TEST(test_sscanf_n_1) {
   const char *str = "abcdefg";
   const char *fstr = "%c%c%n%c";
 
-  int my_result = my_sscanf(str, fstr, &my_values[0], &my_values[1], &my_n,
-                              &my_values[2]);
+  int my_result =
+      my_sscanf(str, fstr, &my_values[0], &my_values[1], &my_n, &my_values[2]);
   int system_result = sscanf(str, "%c%c%n%c", &system_values[0],
                              &system_values[1], &system_n, &system_values[2]);
 
@@ -1251,7 +1250,7 @@ START_TEST(test_sscanf_n_2) {
   const char *fstr = "%d %d %n %d";
 
   int my_result = my_sscanf(str, fstr, &my_values[0], &my_values[1],
-                              &my_values[2], &my_values[3]);
+                            &my_values[2], &my_values[3]);
   int system_result =
       sscanf(str, "%d %d %n %d", &system_values[0], &system_values[1],
              &system_values[2], &system_values[3]);
@@ -1270,7 +1269,7 @@ START_TEST(test_sscanf_n_percent) {
   const char *fstr = "%d %%%d %n %d";
 
   int my_result = my_sscanf(str, fstr, &my_values[0], &my_values[1],
-                              &my_values[2], &my_values[3]);
+                            &my_values[2], &my_values[3]);
   int system_result =
       sscanf(str, "%d %%%d %n %d", &system_values[0], &system_values[1],
              &system_values[2], &system_values[3]);
@@ -1431,7 +1430,7 @@ START_TEST(test_sscanf_pointer_1) {
   const char *fstr = "%p %p %p %p";
 
   int my_result = my_sscanf(str, fstr, &my_values[0], &my_values[1],
-                              &my_values[2], &my_values[3]);
+                            &my_values[2], &my_values[3]);
   int system_result =
       sscanf(str, "%p %p %p %p", &system_values[0], &system_values[1],
              &system_values[2], &system_values[3]);
@@ -1451,7 +1450,7 @@ START_TEST(test_sscanf_pointer_2) {
   const char *fstr = "%p %p %p %p %*p %2p";
 
   int my_result = my_sscanf(str, fstr, &my_values[0], &my_values[1],
-                              &my_values[2], &my_values[3], &my_values[4]);
+                            &my_values[2], &my_values[3], &my_values[4]);
   int system_result =
       sscanf(str, "%p %p %p %p %*p %2p", &system_values[0], &system_values[1],
              &system_values[2], &system_values[3], &system_values[4]);
@@ -1479,7 +1478,7 @@ START_TEST(test_sscanf_mix_1) {
       sscanf(str, "%li%c%li%c", &system_values_int[0], &system_values_ch[0],
              &system_values_int[1], &system_values_ch[1]);
   int my_result = my_sscanf(str, fstr, &my_values_int[0], &my_values_ch[0],
-                              &my_values_int[1], &my_values_ch[1]);
+                            &my_values_int[1], &my_values_ch[1]);
 
   ck_assert_int_eq(system_result, my_result);
   ck_assert_int_eq(system_values_int[0], my_values_int[0]);
@@ -1530,7 +1529,7 @@ START_TEST(test_sscanf_mix_3) {
                              &system_ch, system_str_1, system_str_2,
                              &system_float, &system_short, &system_long_long);
   int my_result = sscanf(str, fstr, &my_ch, my_str_1, my_str_2, &my_float,
-                          &my_short, &my_long_long);
+                         &my_short, &my_long_long);
 
   ck_assert_int_eq(system_result, my_result);
   ck_assert_int_eq(system_ch, my_ch);

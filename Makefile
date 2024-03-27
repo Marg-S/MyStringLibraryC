@@ -46,9 +46,13 @@ test: clean ${EXECUTABLE}
 	@echo "Running tests..."
 	./${EXECUTABLE}
 
-format:
+style:
 	@echo "Checking styles..."
 	clang-format -n -style=Google *.c *.h tests/*.c tests/*.h
+
+format_style:
+	@echo "Formatting styles..."
+	clang-format -i -style=Google *.c *.h tests/*.c tests/*.h
 
 clean:
 	@echo "Cleaning up..."
@@ -69,4 +73,5 @@ $(TEST_DIR)/$(OBJ_DIR)/%.o: $(TEST_DIR)/%.c
 $(EXECUTABLE): $(TEST_OBJ) $(OBJ_TEST)
 	$(CC) $(CFLAGS) $(GCOVFLAGS) $^ -o $@ $(LDFLAGS)  
 
-.PHONY: all gcov_report test format clean
+
+.PHONY: all gcov_report test style format_style clean
